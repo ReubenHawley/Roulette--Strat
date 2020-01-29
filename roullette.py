@@ -2,9 +2,13 @@ from random import randint
 
 
 class Bets:
-    def __init__(self, placed_on, bet_amount):
+    def __init__(self, available_balance, placed_on, bet_amount: int):
+        self.balance = available_balance
         self.Bet = 0
         self.amount = 0
+        if placed_on > 36 or placed_on < 0:
+            print(f"you have tried to enter an invalid bet, you can bet on 0-36,high,low,odd,even,black,red")
+            placed_on = input("Please input a valid bet: ")
         self.Placed_Bet(placed_on)
         self.Bet_amount(bet_amount)
 
@@ -12,7 +16,11 @@ class Bets:
         self.Bet = placed
 
     def Bet_amount(self, wager):
-        self.amount = wager
+        if wager > self.balance:
+            print(f"you have tried to wager more than your balance, your current balance is {self.balance}")
+            self.amount = input("please enter an amount less than or equal to your available balance: ")
+        else:
+            self.amount = wager
 
     def __repr__(self):
         return "class Bets, call a method"
@@ -31,22 +39,9 @@ class Roll:
 
 
 class Wallet:
-    def __init__(self, initial_amount):
-        self.Wallet_balance = 0  # call this for the wallet balance
-        self.Start_balance(initial_amount)  # this initiates the wallet balance
-
-    def Start_balance(self, initial_balance):
-        self.Wallet_balance = initial_balance
-
-    def Updated_balance(self, realised_pnl):  # any updates to the wallet balance require this method
-        self.Wallet_balance += realised_pnl
-
-    def __repr__(self):
-        return "class Wallet, call a method"
-
-
-class Pnl:
-    def __init__(self, wallet_balance, roll, bet, amount):
+    def __init__(self):
+        self.Start_balance = float(input("Enter your starting Balance: "))
+        self.Wallet_balance = self.Start_balance
         self.numbers = range(1, 36)
         self.black = (2, 4, 6, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35)
         self.red = (1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36)
@@ -61,13 +56,11 @@ class Pnl:
         self.Second12 = range(13, 24)
         self.Third12 = range(25, 36)
         self.Zero = (0, 'zero', None)
-        self.Wallet_balance = wallet_balance
         self.Roll = 0
         self.Bet = 0
         self.Amount = 0
-        self.Realised_pnl(roll, bet, amount)
 
-    def Realised_pnl(self, roll, bet, amount):
+    def Realised_pnl(self, roll: int, bet: int, amount: int):
         if bet == roll:
             maxwin = amount * 36
             self.Wallet_balance += maxwin
