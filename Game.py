@@ -17,6 +17,6 @@ class Game:
         self.Wallet.Realised_pnl(roll=self.rolled.Roll, bet=self.bet.Bet, amount=self.wager)
 
 
-roundstart = Game()
+roulette = Game()
 while True:
-    roundstart.NewRound()
+    roulette.NewRound()
