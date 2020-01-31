@@ -1,5 +1,24 @@
 from random import randint
 
+import pandas as pd
+
+
+class Data:
+    def __init__(self):
+        self.columns = ("Wallet_balance", "Placed_bid", "Bid_amount", "Roll", "PNL")
+        self.Database = pd.DataFrame(columns=self.columns)
+
+    def Add_new(self, balance, placed_bid, bid_amount, roll, pnl):
+        new_data = [[balance, placed_bid, bid_amount, roll, pnl]]
+        df = pd.DataFrame(new_data, columns=self.columns)
+        self.Database = self.Database.append(df, ignore_index=True)
+
+    def Print_Data(self, path_to_csv):
+        self.Database.to_csv(path_to_csv)
+
+    def __repr__(self):
+        return "class Data, use method .Add_new or .Print_Data"
+
 
 class Bets:
     def __init__(self, available_balance, placed_on, bet_amount: int):
@@ -65,6 +84,7 @@ class Wallet:
         self.Roll = 0
         self.Bet = 0
         self.Amount = 0
+        self.winnings = 0
 
     def Realised_pnl(self, roll: int, bet: int, amount: int):
         self.Bet = bet
@@ -76,95 +96,95 @@ class Wallet:
                 f'Your balance is: {self.Wallet_balance} ')
 
         elif self.Bet == self.Roll:
-            max_win = self.Amount * 36
-            self.Wallet_balance += (max_win - self.Amount)
+            self.winnings = self.Amount * 36
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {bet},'
-                f' You have won {max_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 37 and self.Roll in self.black:
-            black_win = self.Amount * 2
-            self.Wallet_balance += (black_win - self.Amount)
+            self.winnings = self.Amount * 2
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {black_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 38 and self.Roll in self.red:
-            red_win = self.Amount * 2
-            self.Wallet_balance += (red_win - self.Amount)
+            self.winnings = self.Amount * 2
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {red_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 39 and Roll in self.even:
-            even_win = self.Amount * 2
-            self.Wallet_balance += (even_win - self.Amount)
+            self.winnings = self.Amount * 2
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {even_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 40 and self.Roll in self.odd:
-            odd_win = self.Amount * 2
-            self.Wallet_balance += (odd_win - self.Amount)
+            self.winnings = self.Amount * 2
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
-                f'Roll was {self.Roll}, your Bet was {bet},'
-                f' You have won {self.Roll}\n Your new balance is: {self.Wallet_balance} ')
+                f'Roll was {self.Roll}, your Bet was {self.Bet},'
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
-        elif bet == 41 and self.Roll in self.low:
-            low_win = self.Amount * 2
-            self.Wallet_balance += (low_win - self.Amount)
+        elif self.Bet == 41 and self.Roll in self.low:
+            self.winnings = self.Amount * 2
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
-                f'Roll was {roll}, your Bet was {self.Bet},'
-                f' You have won {low_win}\n Your new balance is: {self.Wallet_balance} ')
+                f'Roll was {self.Roll}, your Bet was {self.Bet},'
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 42 and self.Roll in self.high:
-            high_win = self.Amount * 2
-            self.Wallet_balance += (high_win - self.Amount)
+            self.winnings = self.Amount * 2
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {high_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 43 and Roll in self.Column1:
-            column_win = self.Amount * 3
-            self.Wallet_balance += (column_win - self.Amount)
+            self.winnings = self.Amount * 3
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {column_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 44 and self.Roll in self.Column2:
-            column_win = self.Amount * 3
-            self.Wallet_balance += (column_win - self.Amount)
+            self.winnings = self.Amount * 3
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {column_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 45 and Roll in self.Column3:
-            column_win = self.Amount * 3
-            self.Wallet_balance += (column_win - self.Amount)
+            self.winnings = self.Amount * 3
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {column_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 46 and self.Roll in self.First12:
-            first12_win = self.Amount * 3
-            self.Wallet_balance += (first12_win - self.Amount)
+            self.winnings = self.Amount * 3
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {first12_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 47 and self.Roll in self.Second12:
-            second12_win = self.Amount * 3
-            self.Wallet_balance += (second12_win - self.Amount)
+            self.winnings = self.Amount * 3
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {second12_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 48 and self.Roll in self.Third12:
-            third12_win = self.Amount * 3
-            self.Wallet_balance += (third12_win - self.Amount)
+            self.winnings = self.Amount * 3
+            self.Wallet_balance += (self.winnings - self.Amount)
             print(
                 f'Roll was {self.Roll}, your Bet was {self.Bet},'
-                f' You have won {third12_win}\n Your new balance is: {self.Wallet_balance} ')
+                f' You have won {self.winnings}\n Your new balance is: {self.Wallet_balance} ')
 
         elif self.Bet == 49:
             self.Wallet_balance *= 1
