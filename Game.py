@@ -17,9 +17,17 @@ class ManualGame:
         self.rolled = Roll()
         self.Wallet.Realised_pnl(roll=self.rolled.Roll, bet=bet.Bet, amount=self.wager)
         self.Data.Add_new(self.Wallet.Wallet_balance, bet.Bet, self.wager, self.rolled.Roll, self.Wallet.winnings)
+        self.Exit_game()
 
     def Display_History(self):
         print(self.Data.Database)
+
+    def Exit_game(self):
+        stop_game = input("do you want to continue? y/n: ")
+        if stop_game == "n":
+            exit()
+        elif stop_game == "y":
+            self.NewRound()
 
 
 class AutoGame:
