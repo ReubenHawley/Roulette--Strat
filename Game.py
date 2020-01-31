@@ -1,7 +1,28 @@
 from roullette import Wallet, Bets, Roll, Data
 
 
-class Game:
+class ManualGame:
+    def __init__(self):
+        self.Wallet = Wallet()
+        self.placement = 0
+        self.wager = 0
+        self.rolled = 0
+        self.Data = Data()
+
+    def NewRound(self):
+        print(f"Current balance is {self.Wallet.Wallet_balance}")
+        self.placement = int(input("Enter a bet: "))
+        self.wager = int(input("Enter an amount: "))
+        bet = Bets(self.Wallet.Wallet_balance, self.placement, self.wager)
+        self.rolled = Roll()
+        self.Wallet.Realised_pnl(roll=self.rolled.Roll, bet=bet.Bet, amount=self.wager)
+        self.Data.Add_new(self.Wallet.Wallet_balance, bet.Bet, self.wager, self.rolled.Roll, self.Wallet.winnings)
+
+    def Display_History(self):
+        print(self.Data.Database)
+
+
+class AutoGame:
     def __init__(self):
         self.Wallet = Wallet()
         self.placement = 0
@@ -23,11 +44,9 @@ class Game:
 
 
 def StartGame():
-    roulette = Game()
+    roulette = ManualGame()
     while True:
-        placement = int(input("Enter a bet: "))
-        wager = int(input("Enter an amount: "))
-        roulette.NewRound(placement, wager)
+        roulette.NewRound()
         roulette.Display_History()
 
 
