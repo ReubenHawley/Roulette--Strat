@@ -1,2 +1,2 @@
 # Roulette--Strat
-a simple roulette game with the sole purpose of back testing strategies 
+a simple console based roulette game with the sole purpose of back testing strategies 
