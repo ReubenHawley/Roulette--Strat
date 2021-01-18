@@ -21,6 +21,7 @@ __How it works:__
 
 > If the player guesses correctly then a wager multiplier is paid out based on the bet position and size.
 > If the player guess incorrectly the initial bet is lost to the house.
+> this repeats endlessly until the player stops or untill the funds reach 0.
 
 __Wager Multiplier__
 
