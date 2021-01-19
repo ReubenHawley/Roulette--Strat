@@ -55,7 +55,6 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -64,7 +63,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project was created for fun as a learning experience to better understand python
+This project was created for fun as a learning experience to better understand python and programming in general, as my skill grows, new features may be added
 ### Built With
 
 * [python](https://python.org/)
@@ -107,7 +106,7 @@ _For details on the game please refer to the [Documentation](https://github.com/
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x]  Create all standard functions in the functional programming style
+- [x] Create all standard functions in the functional programming style
 - [x] Port all functional programming to OOP based programming
 - [ ] Add a GUI using javascript and HTML and render using Flask
 
@@ -139,14 +138,6 @@ Reuben Hawley - [theonlyReuben](https://twitter.com/theonlyReuben) - [email](reu
 
 Project Link: [https://github.com/ReubenHawley/Roulette--Strat](https://github.com/ReubenHawley/Roulette--Strat)
 
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
 
 
 
